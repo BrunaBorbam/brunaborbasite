@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Bruna Borba Marketing Studio Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --petrol-blue: #1A535C;
+            --sage-green: #4A5240;
+            --cream: #F7EDE2;
+            --vintage-pink: #D8A7B1;
+            --light-pink: #F4D8E0;
+            --beige: #F7EDE2;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background-color: white;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .btn-primary {
+            background-color: var(--petrol-blue);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #134046;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--vintage-pink);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c6919a;
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--vintage-pink);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--vintage-pink);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: var(--petrol-blue);
+        }
+        
+        .nav-link.active {
+            color: var(--petrol-blue);
+            font-weight: 500;
+        }
+        
+        /* Estilos específicos para o blog */
+        .blog-card {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-card img {
+            transition: all 0.5s ease;
+        }
+        
+        .blog-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .blog-category {
+            background-color: var(--light-pink);
+            color: var(--petrol-blue);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .blog-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .pagination-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-btn:hover, .pagination-btn.active {
+            background-color: var(--vintage-pink);
+            color: white;
+        }
+        
+        .search-input {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: var(--vintage-pink);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(216, 167, 177, 0.2);
+        }
+        
+        .search-btn {
+            background-color: var(--petrol-blue);
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background-color: #134046;
+        }
+        
+        .category-btn {
+            background-color: transparent;
+            border: 1px solid var(--petrol-blue);
+            color: var(--petrol-blue);
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--petrol-blue);
+            color: white;
+        }
+        
+        .featured-post {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .featured-post-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            padding: 30px 20px 20px;
+        }
+        
+        .featured-post-overlay h3, .featured-post-overlay p {
+            color: white;
+        }
+        
+        .bg-pattern {
+            background-color: white;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231A535C' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Estilos para a página de post individual */
+        .post-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .post-content h2 {
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--petrol-blue);
+        }
+        
+        .post-content h3 {
+            font-size: 1.5rem;
+            margin-top: 1.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--petrol-blue);
+        }
+        
+        .post-content ul, .post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid var(--vintage-pink);
+            padding-left: 1rem;
+            font-style: italic;
+            margin: 1.5rem 0;
+            color: #555;
+        }
+        
+        .post-content img {
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .post-content a {
+            color: var(--vintage-pink);
+            text-decoration: underline;
+        }
+        
+        .post-content a:hover {
+            color: var(--petrol-blue);
+        }
+        
+        .realistic-image {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title::after {
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-[var(--petrol-blue)]">Bruna Borba</a>
+                
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="index.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Home</a></li>
+                        <li><a href="sobre.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Quem Sou Eu</a></li>
+                        <li><a href="servicos.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Serviços</a></li>
+                        <li><a href="portfolio.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Portfólio</a></li>
+                        <li><a href="blog.html" class="text-[var(--vintage-pink)] font-medium">Blog</a></li>
+                        <li><a href="contato.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="md:hidden">
+                    <button class="text-gray-700 focus:outline-none" id="mobile-menu-button">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Menu Mobile -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <ul class="flex flex-col space-y-4">
+                    <li><a href="index.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Home</a></li>
+                    <li><a href="sobre.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Quem Sou Eu</a></li>
+                    <li><a href="servicos.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Serviços</a></li>
+                    <li><a href="portfolio.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Portfólio</a></li>
+                    <li><a href="blog.html" class="text-[var(--vintage-pink)] font-medium">Blog</a></li>
+                    <li><a href="contato.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+    <div id="main-content">
+        <!-- Blog Hero Section -->
+        <section class="py-16 bg-[var(--petrol-blue)] text-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Blog</h1>
+                    <p class="text-lg opacity-90">Dicas, estratégias e insights sobre marketing digital para impulsionar o seu negócio</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Blog Content -->
+        <section class="py-16 relative bg-pattern">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Coluna Principal -->
+                    <div class="md:col-span-2">
+                        <!-- Post em Destaque -->
+                        <div class="featured-post mb-12 reveal active">
+                            <div class="relative h-96 rounded-lg overflow-hidden">
+                                <!-- Imagem de destaque - SVG realista -->
+                                <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 800 400&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%231A535C&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%23D8A7B1&quot;/></linearGradient><pattern id=&quot;b&quot; width=&quot;20&quot; height=&quot;20&quot; patternUnits=&quot;userSpaceOnUse&quot;><path d=&quot;M20 0L0 0 0 20&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.1)&quot; stroke-width=&quot;1&quot;/></pattern></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23b)&quot;/><circle cx=&quot;650&quot; cy=&quot;100&quot; r=&quot;80&quot; fill=&quot;rgba(255,255,255,0.1)&quot;/><circle cx=&quot;150&quot; cy=&quot;300&quot; r=&quot;120&quot; fill=&quot;rgba(255,255,255,0.05)&quot;/><g transform=&quot;translate(400, 200) scale(0.8)&quot;><rect x=&quot;-60&quot; y=&quot;-40&quot; width=&quot;120&quot; height=&quot;80&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><rect x=&quot;-50&quot; y=&quot;-30&quot; width=&quot;100&quot; height=&quot;60&quot; rx=&quot;2&quot; fill=&quot;%231A535C&quot;/><rect x=&quot;-30&quot; y=&quot;45&quot; width=&quot;60&quot; height=&quot;5&quot; rx=&quot;2&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><polyline points=&quot;-40,-10 -20,0 -5,-15 15,5 35,-20&quot; stroke=&quot;white&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot;/><circle cx=&quot;35&quot; cy=&quot;-20&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;-100&quot; cy=&quot;-80&quot; r=&quot;20&quot; fill=&quot;white&quot; opacity=&quot;0.2&quot;/><circle cx=&quot;-100&quot; cy=&quot;-80&quot; r=&quot;10&quot; fill=&quot;%23D8A7B1&quot; opacity=&quot;0.6&quot;/><circle cx=&quot;100&quot; cy=&quot;80&quot; r=&quot;25&quot; fill=&quot;white&quot; opacity=&quot;0.2&quot;/><circle cx=&quot;100&quot; cy=&quot;80&quot; r=&quot;12&quot; fill=&quot;%23D8A7B1&quot; opacity=&quot;0.6&quot;/></g></svg>')"></div>
+                                
+                                <div class="featured-post-overlay">
+                                    <span class="blog-category inline-block mb-3">Estratégia Digital</span>
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-2">Como Criar uma Estratégia de Marketing Digital Eficiente em 2025</h3>
+                                    <p class="mb-4 opacity-90">Descubra as melhores práticas e tendências para desenvolver uma estratégia de marketing digital que realmente converte.</p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm opacity-80">15 de Maio, 2025</span>
+                                        <a href="#" class="text-white font-medium hover:underline flex items-center" onclick="showPost('estrategia-digital-2025'); return false;">
+                                            Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Posts Recentes -->
+                        <h2 class="text-2xl font-bold mb-6 text-[var(--petrol-blue)]">Posts Recentes</h2>
+                        
+                        <div id="page-1" class="grid md:grid-cols-2 gap-8">
+                            <!-- Post 1 -->
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-md reveal active">
+                                <div class="overflow-hidden h-48 relative">
+                                    <!-- SVG para Google Ads mais realista -->
+                                    <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 200&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%231A535C&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%234A5240&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><g transform=&quot;translate(200, 100) scale(0.6)&quot;><circle cx=&quot;0&quot; cy=&quot;0&quot; r=&quot;60&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><path d=&quot;M-20,-20 L20,-20 L0,20 Z&quot; fill=&quot;%234285F4&quot; opacity=&quot;0.9&quot;/><path d=&quot;M-20,-20 L-40,20 L0,20 Z&quot; fill=&quot;%23FBBC05&quot; opacity=&quot;0.9&quot;/><path d=&quot;M20,-20 L40,20 L0,20 Z&quot; fill=&quot;%2334A853&quot; opacity=&quot;0.9&quot;/><line x1=&quot;-80&quot; y1=&quot;40&quot; x2=&quot;80&quot; y2=&quot;40&quot; stroke=&quot;white&quot; stroke-width=&quot;2&quot; opacity=&quot;0.7&quot;/><polyline points=&quot;-70,40 -50,20 -30,30 -10,10 10,25 30,5 50,15 70,0&quot; stroke=&quot;white&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot;/><circle cx=&quot;70&quot; cy=&quot;0&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/></g></svg>')"></div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="blog-category">Tráfego Pago</span>
+                                        <span class="blog-date">10 de Junho, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">7 Dicas para Otimizar suas Campanhas no Google Ads</h3>
+                                    <p class="text-gray-700 mb-4">Aprenda como melhorar o desempenho das suas campanhas de Google Ads e reduzir o custo por conversão.</p>
+                                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="showPost('google-ads-dicas'); return false;">
+                                        Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Post 2 -->
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-md reveal active" style="animation-delay: 0.2s;">
+                                <div class="overflow-hidden h-48 relative">
+                                    <!-- SVG para Instagram mais realista -->
+                                    <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 200&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%23833AB4&quot;/><stop offset=&quot;50%&quot; stop-color=&quot;%23FD1D1D&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%23FCAF45&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><g transform=&quot;translate(200, 100) scale(0.5)&quot;><rect x=&quot;-70&quot; y=&quot;-70&quot; width=&quot;140&quot; height=&quot;140&quot; rx=&quot;35&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><circle cx=&quot;0&quot; cy=&quot;0&quot; r=&quot;35&quot; fill=&quot;none&quot; stroke=&quot;white&quot; stroke-width=&quot;10&quot; opacity=&quot;0.9&quot;/><circle cx=&quot;50&quot; cy=&quot;-50&quot; r=&quot;10&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><rect x=&quot;-120&quot; y=&quot;60&quot; width=&quot;60&quot; height=&quot;60&quot; rx=&quot;10&quot; fill=&quot;white&quot; opacity=&quot;0.4&quot;/><rect x=&quot;-40&quot; y=&quot;60&quot; width=&quot;60&quot; height=&quot;60&quot; rx=&quot;10&quot; fill=&quot;white&quot; opacity=&quot;0.6&quot;/><rect x=&quot;40&quot; y=&quot;60&quot; width=&quot;60&quot; height=&quot;60&quot; rx=&quot;10&quot; fill=&quot;white&quot; opacity=&quot;0.8&quot;/><rect x=&quot;-120&quot; y=&quot;-120&quot; width=&quot;60&quot; height=&quot;60&quot; rx=&quot;10&quot; fill=&quot;white&quot; opacity=&quot;0.3&quot;/><rect x=&quot;-40&quot; y=&quot;-120&quot; width=&quot;60&quot; height=&quot;60&quot; rx=&quot;10&quot; fill=&quot;white&quot; opacity=&quot;0.5&quot;/><rect x=&quot;40&quot; y=&quot;-120&quot; width=&quot;60&quot; height=&quot;60&quot; rx=&quot;10&quot; fill=&quot;white&quot; opacity=&quot;0.7&quot;/></g></svg>')"></div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="blog-category">Redes Sociais</span>
+                                        <span class="blog-date">28 de Maio, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Como Criar Conteúdo Engajador para Instagram</h3>
+                                    <p class="text-gray-700 mb-4">Estratégias práticas para aumentar o engajamento do seu perfil no Instagram e converter seguidores em clientes.</p>
+                                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="showPost('instagram-conteudo'); return false;">
+                                        Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Post 3 -->
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-md reveal active" style="animation-delay: 0.3s;">
+                                <div class="overflow-hidden h-48 relative">
+                                    <!-- SVG para SEO Local mais realista -->
+                                    <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 200&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%231A535C&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%23D8A7B1&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><g transform=&quot;translate(200, 100) scale(0.6)&quot;><rect x=&quot;-100&quot; y=&quot;-70&quot; width=&quot;200&quot; height=&quot;140&quot; rx=&quot;10&quot; fill=&quot;white&quot; opacity=&quot;0.8&quot;/><line x1=&quot;-80&quot; y1=&quot;-50&quot; x2=&quot;80&quot; y2=&quot;-50&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;2&quot; opacity=&quot;0.3&quot;/><line x1=&quot;-80&quot; y1=&quot;-20&quot; x2=&quot;80&quot; y2=&quot;-20&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;2&quot; opacity=&quot;0.3&quot;/><line x1=&quot;-80&quot; y1=&quot;10&quot; x2=&quot;80&quot; y2=&quot;10&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;2&quot; opacity=&quot;0.3&quot;/><line x1=&quot;-80&quot; y1=&quot;40&quot; x2=&quot;80&quot; y2=&quot;40&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;2&quot; opacity=&quot;0.3&quot;/><line x1=&quot;-50&quot; y1=&quot;-70&quot; x2=&quot;-50&quot; y2=&quot;70&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;2&quot; opacity=&quot;0.3&quot;/><line x1=&quot;0&quot; y1=&quot;-70&quot; x2=&quot;0&quot; y2=&quot;70&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;2&quot; opacity=&quot;0.3&quot;/><line x1=&quot;50&quot; y1=&quot;-70&quot; x2=&quot;50&quot; y2=&quot;70&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;2&quot; opacity=&quot;0.3&quot;/><path d=&quot;M0,-30 C-20,-30 -30,-10 -30,0 C-30,20 0,50 0,50 C0,50 30,20 30,0 C30,-10 20,-30 0,-30 Z&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;0&quot; cy=&quot;-10&quot; r=&quot;8&quot; fill=&quot;white&quot;/><circle cx=&quot;-60&quot; cy=&quot;40&quot; r=&quot;15&quot; fill=&quot;none&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;4&quot;/><line x1=&quot;-50&quot; y1=&quot;50&quot; x2=&quot;-40&quot; y2=&quot;60&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;4&quot;/></g></svg>')"></div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="blog-category">SEO</span>
+                                        <span class="blog-date">20 de Maio, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">SEO Local: Como Aparecer nas Buscas da sua Região</h3>
+                                    <p class="text-gray-700 mb-4">Descubra como otimizar seu negócio para buscas locais e atrair mais clientes da sua região.</p>
+                                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="showPost('seo-local'); return false;">
+                                        Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Post 4 -->
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-md reveal active" style="animation-delay: 0.4s;">
+                                <div class="overflow-hidden h-48 relative">
+                                    <!-- SVG para Email Marketing mais realista -->
+                                    <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 200&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%234A5240&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%23D8A7B1&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><g transform=&quot;translate(200, 100) scale(0.6)&quot;><rect x=&quot;-80&quot; y=&quot;-50&quot; width=&quot;160&quot; height=&quot;100&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><path d=&quot;M-80,-50 L0,0 L80,-50&quot; fill=&quot;none&quot; stroke=&quot;%234A5240&quot; stroke-width=&quot;2&quot;/><path d=&quot;M-80,50 L0,0 L80,50&quot; fill=&quot;none&quot; stroke=&quot;%234A5240&quot; stroke-width=&quot;2&quot;/><rect x=&quot;-60&quot; y=&quot;-80&quot; width=&quot;120&quot; height=&quot;20&quot; rx=&quot;3&quot; fill=&quot;white&quot; opacity=&quot;0.6&quot;/><rect x=&quot;-60&quot; y=&quot;-100&quot; width=&quot;80&quot; height=&quot;10&quot; rx=&quot;3&quot; fill=&quot;white&quot; opacity=&quot;0.4&quot;/><rect x=&quot;90&quot; y=&quot;-40&quot; width=&quot;20&quot; height=&quot;80&quot; rx=&quot;3&quot; fill=&quot;white&quot; opacity=&quot;0.4&quot;/><rect x=&quot;120&quot; y=&quot;-60&quot; width=&quot;20&quot; height=&quot;100&quot; rx=&quot;3&quot; fill=&quot;white&quot; opacity=&quot;0.6&quot;/><rect x=&quot;150&quot; y=&quot;-80&quot; width=&quot;20&quot; height=&quot;120&quot; rx=&quot;3&quot; fill=&quot;white&quot; opacity=&quot;0.8&quot;/></g></svg>')"></div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="blog-category">E-mail Marketing</span>
+                                        <span class="blog-date">8 de Maio, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Como Criar Newsletters que Convertem</h3>
+                                    <p class="text-gray-700 mb-4">Aprenda a criar e-mails que seus assinantes realmente abrem e que geram resultados para o seu negócio.</p>
+                                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="showPost('newsletters-conversao'); return false;">
+                                        Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="page-2" class="grid md:grid-cols-2 gap-8 hidden">
+                            <!-- Post 5 -->
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-md reveal active" style="animation-delay: 0.5s;">
+                                <div class="overflow-hidden h-48 relative">
+                                    <!-- SVG para Análise de Dados mais realista -->
+                                    <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 200&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%231A535C&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%234A5240&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><g transform=&quot;translate(200, 100) scale(0.6)&quot;><rect x=&quot;-100&quot; y=&quot;-60&quot; width=&quot;200&quot; height=&quot;120&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><rect x=&quot;-90&quot; y=&quot;-50&quot; width=&quot;85&quot; height=&quot;50&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><polyline points=&quot;-85,-30 -70,-20 -55,-35 -40,-15 -25,-25 -10,-10&quot; stroke=&quot;%23D8A7B1&quot; stroke-width=&quot;2&quot; fill=&quot;none&quot;/><rect x=&quot;-90&quot; y=&quot;10&quot; width=&quot;85&quot; height=&quot;50&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><circle cx=&quot;-47&quot; cy=&quot;35&quot; r=&quot;25&quot; fill=&quot;none&quot; stroke=&quot;%231A535C&quot; stroke-width=&quot;15&quot; stroke-dasharray=&quot;60 40&quot;/><rect x=&quot;5&quot; y=&quot;-50&quot; width=&quot;85&quot; height=&quot;110&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><rect x=&quot;15&quot; y=&quot;40&quot; width=&quot;15&quot; height=&quot;10&quot; fill=&quot;%231A535C&quot;/><rect x=&quot;40&quot; y=&quot;30&quot; width=&quot;15&quot; height=&quot;20&quot; fill=&quot;%231A535C&quot;/><rect x=&quot;65&quot; y=&quot;10&quot; width=&quot;15&quot; height=&quot;40&quot; fill=&quot;%231A535C&quot;/></g></svg>')"></div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="blog-category">Análise de Dados</span>
+                                        <span class="blog-date">1 de Maio, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Métricas Essenciais para Acompanhar no seu Marketing Digital</h3>
+                                    <p class="text-gray-700 mb-4">Conheça as principais métricas que você deve monitorar para avaliar o sucesso das suas estratégias digitais.</p>
+                                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="showPost('metricas-essenciais'); return false;">
+                                        Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Post 6 -->
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-md reveal active" style="animation-delay: 0.6s;">
+                                <div class="overflow-hidden h-48 relative">
+                                    <!-- SVG para IA no Marketing mais realista -->
+                                    <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 200&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%236B46C1&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%231A535C&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><g transform=&quot;translate(200, 100) scale(0.6)&quot;><circle cx=&quot;0&quot; cy=&quot;0&quot; r=&quot;50&quot; fill=&quot;none&quot; stroke=&quot;white&quot; stroke-width=&quot;2&quot; opacity=&quot;0.7&quot;/><circle cx=&quot;0&quot; cy=&quot;0&quot; r=&quot;30&quot; fill=&quot;none&quot; stroke=&quot;white&quot; stroke-width=&quot;2&quot; opacity=&quot;0.7&quot;/><line x1=&quot;-40&quot; y1=&quot;-30&quot; x2=&quot;40&quot; y2=&quot;30&quot; stroke=&quot;white&quot; stroke-width=&quot;1&quot; opacity=&quot;0.7&quot;/><line x1=&quot;-40&quot; y1=&quot;30&quot; x2=&quot;40&quot; y2=&quot;-30&quot; stroke=&quot;white&quot; stroke-width=&quot;1&quot; opacity=&quot;0.7&quot;/><line x1=&quot;0&quot; y1=&quot;-50&quot; x2=&quot;0&quot; y2=&quot;50&quot; stroke=&quot;white&quot; stroke-width=&quot;1&quot; opacity=&quot;0.7&quot;/><line x1=&quot;-50&quot; y1=&quot;0&quot; x2=&quot;50&quot; y2=&quot;0&quot; stroke=&quot;white&quot; stroke-width=&quot;1&quot; opacity=&quot;0.7&quot;/><circle cx=&quot;-40&quot; cy=&quot;-30&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;40&quot; cy=&quot;30&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;-40&quot; cy=&quot;30&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;40&quot; cy=&quot;-30&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;0&quot; cy=&quot;-50&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;0&quot; cy=&quot;50&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;-50&quot; cy=&quot;0&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/><circle cx=&quot;50&quot; cy=&quot;0&quot; r=&quot;5&quot; fill=&quot;%23D8A7B1&quot;/></g></svg>')"></div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="blog-category">Tendências</span>
+                                        <span class="blog-date">25 de Abril, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Inteligência Artificial no Marketing: O Futuro Chegou</h3>
+                                    <p class="text-gray-700 mb-4">Descubra como a IA está transformando o marketing digital e como você pode aproveitar essa tecnologia.</p>
+                                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="showPost('ia-marketing'); return false;">
+                                        Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Post 7 -->
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-md reveal active">
+                                <div class="overflow-hidden h-48 relative">
+                                    <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 200&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%231A535C&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%23D8A7B1&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><g transform=&quot;translate(200, 100) scale(0.6)&quot;><rect x=&quot;-90&quot; y=&quot;-50&quot; width=&quot;180&quot; height=&quot;100&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><rect x=&quot;-80&quot; y=&quot;-40&quot; width=&quot;160&quot; height=&quot;20&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><rect x=&quot;-80&quot; y=&quot;-10&quot; width=&quot;160&quot; height=&quot;10&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><rect x=&quot;-80&quot; y=&quot;10&quot; width=&quot;160&quot; height=&quot;10&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><rect x=&quot;-80&quot; y=&quot;30&quot; width=&quot;160&quot; height=&quot;10&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><circle cx=&quot;-60&quot; cy=&quot;-60&quot; r=&quot;20&quot; fill=&quot;%23D8A7B1&quot;/><path d=&quot;M-70,-60 L-55,-60 M-62.5,-67.5 L-62.5,-52.5&quot; stroke=&quot;white&quot; stroke-width=&quot;3&quot;/></g></svg>')"></div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="blog-category">Marketing de Conteúdo</span>
+                                        <span class="blog-date">15 de Março, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Como Aumentar suas Vendas com Marketing de Conteúdo</h3>
+                                    <p class="text-gray-700 mb-4">Estratégias eficazes de marketing de conteúdo para atrair, engajar e converter mais clientes.</p>
+                                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="showPost('marketing-conteudo'); return false;">
+                                        Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Post 8 -->
+                            <div class="blog-card bg-white rounded-lg overflow-hidden shadow-md reveal active">
+                                <div class="overflow-hidden h-48 relative">
+                                    <div class="absolute inset-0 w-full h-full realistic-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 200&quot;><defs><linearGradient id=&quot;a&quot; x1=&quot;0%&quot; y1=&quot;0%&quot; x2=&quot;100%&quot; y2=&quot;100%&quot;><stop offset=&quot;0%&quot; stop-color=&quot;%234A5240&quot;/><stop offset=&quot;100%&quot; stop-color=&quot;%231A535C&quot;/></linearGradient></defs><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;url(%23a)&quot;/><g transform=&quot;translate(200, 100) scale(0.6)&quot;><rect x=&quot;-80&quot; y=&quot;-50&quot; width=&quot;160&quot; height=&quot;100&quot; rx=&quot;5&quot; fill=&quot;white&quot; opacity=&quot;0.9&quot;/><rect x=&quot;-70&quot; y=&quot;-40&quot; width=&quot;50&quot; height=&quot;80&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><rect x=&quot;-10&quot; y=&quot;-40&quot; width=&quot;70&quot; height=&quot;30&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><rect x=&quot;-10&quot; y=&quot;0&quot; width=&quot;70&quot; height=&quot;40&quot; rx=&quot;3&quot; fill=&quot;%23F7EDE2&quot;/><circle cx=&quot;-45&quot; cy=&quot;-20&quot; r=&quot;10&quot; fill=&quot;%23D8A7B1&quot;/><rect x=&quot;-60&quot; y=&quot;0&quot; width=&quot;30&quot; height=&quot;5&quot; rx=&quot;2&quot; fill=&quot;%231A535C&quot;/><rect x=&quot;-60&quot; y=&quot;10&quot; width=&quot;30&quot; height=&quot;5&quot; rx=&quot;2&quot; fill=&quot;%231A535C&quot;/><rect x=&quot;-60&quot; y=&quot;20&quot; width=&quot;30&quot; height=&quot;5&quot; rx=&quot;2&quot; fill=&quot;%231A535C&quot;/></g></svg>')"></div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="blog-category">Ferramentas</span>
+                                        <span class="blog-date">2 de Fevereiro, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">5 Ferramentas Essenciais para Marketing Digital</h3>
+                                    <p class="text-gray-700 mb-4">Conheça as ferramentas que todo profissional de marketing digital deve ter em seu arsenal.</p>
+                                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="showPost('ferramentas-marketing'); return false;">
+                                        Ler mais <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Paginação -->
+                        <div class="flex justify-center mt-12">
+                            <nav class="inline-flex rounded-md shadow">
+                                <a href="#" class="pagination-btn border border-gray-300 bg-white text-gray-700 hover:bg-gray-50" id="prev-page">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                                <a href="#" class="pagination-btn border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 active" onclick="changePage(1); return false;">1</a>
+                                <a href="#" class="pagination-btn border border-gray-300 bg-white text-gray-700 hover:bg-gray-50" onclick="changePage(2); return false;">2</a>
+                                <a href="#" class="pagination-btn border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">3</a>
+                                <span class="pagination-btn border border-gray-300 bg-white text-gray-700">...</span>
+                                <a href="#" class="pagination-btn border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">8</a>
+                                <a href="#" class="pagination-btn border border-gray-300 bg-white text-gray-700 hover:bg-gray-50" id="next-page">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar -->
+                    <div class="mt-12 md:mt-0">
+                        <!-- Pesquisa -->
+                        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                            <h3 class="text-xl font-bold mb-4 text-[var(--petrol-blue)]">Pesquisar</h3>
+                            <div class="flex">
+                                <input type="text" placeholder="O que você procura?" class="search-input flex-grow">
+                                <button class="search-btn ml-2">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Categorias -->
+                        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                            <h3 class="text-xl font-bold mb-4 text-[var(--petrol-blue)]">Categorias</h3>
+                            <div class="flex flex-wrap">
+                                <button class="category-btn active">Todos</button>
+                                <button class="category-btn">Estratégia Digital</button>
+                                <button class="category-btn">Tráfego Pago</button>
+                                <button class="category-btn">SEO</button>
+                                <button class="category-btn">Redes Sociais</button>
+                                <button class="category-btn">E-mail Marketing</button>
+                                <button class="category-btn">Análise de Dados</button>
+                                <button class="category-btn">Tendências</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Posts Populares -->
+                        <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                            <h3 class="text-xl font-bold mb-4 text-[var(--petrol-blue)]">Posts Populares</h3>
+                            <ul>
+                                <li class="mb-4 pb-4 border-b border-gray-200">
+                                    <a href="#" class="flex items-start" onclick="showPost('marketing-conteudo'); return false;">
+                                        <div class="w-16 h-16 rounded-md overflow-hidden flex-shrink-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9 7H7V17H9V7Z" fill="white"/>
+                                                <path d="M17 7H15V17H17V7Z" fill="white"/>
+                                                <path d="M13 7H11V17H13V7Z" fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="font-medium text-[var(--petrol-blue)] hover:text-[var(--vintage-pink)] transition-colors">Como Aumentar suas Vendas com Marketing de Conteúdo</h4>
+                                            <span class="text-sm text-gray-500">15 de Março, 2025</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mb-4 pb-4 border-b border-gray-200">
+                                    <a href="#" class="flex items-start" onclick="showPost('ferramentas-marketing'); return false;">
+                                        <div class="w-16 h-16 rounded-md overflow-hidden flex-shrink-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M6 20V18C6 16.9391 6.42143 15.9217 7.17157 15.1716C7.92172 14.4214 8.93913 14 10 14H14C15.0609 14 16.0783 14.4214 16.8284 15.1716C17.5786 15.9217 18 16.9391 18 18V20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M19 12L22 15M22 15L19 18M22 15H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="font-medium text-[var(--petrol-blue)] hover:text-[var(--vintage-pink)] transition-colors">5 Ferramentas Essenciais para Marketing Digital</h4>
+                                            <span class="text-sm text-gray-500">2 de Fevereiro, 2025</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mb-4 pb-4 border-b border-gray-200">
+                                    <a href="#" class="flex items-start" onclick="showPost('presenca-digital'); return false;">
+                                        <div class="w-16 h-16 rounded-md overflow-hidden flex-shrink-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="font-medium text-[var(--petrol-blue)] hover:text-[var(--vintage-pink)] transition-colors">Como Criar uma Presença Digital Forte para sua Marca</h4>
+                                            <span class="text-sm text-gray-500">18 de Janeiro, 2025</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-start" onclick="showPost('anuncios-facebook'); return false;">
+                                        <div class="w-16 h-16 rounded-md overflow-hidden flex-shrink-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V4C20 2.89543 19.1046 2 18 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M8 6H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M8 10H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M8 14H12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="font-medium text-[var(--petrol-blue)] hover:text-[var(--vintage-pink)] transition-colors">O Guia Definitivo para Anúncios no Facebook</h4>
+                                            <span class="text-sm text-gray-500">5 de Janeiro, 2025</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Newsletter -->
+                        <div class="bg-[var(--petrol-blue)] p-6 rounded-lg shadow-md text-white">
+                            <h3 class="text-xl font-bold mb-4">Inscreva-se na Newsletter</h3>
+                            <p class="mb-4 opacity-90">Receba dicas exclusivas de marketing digital diretamente no seu e-mail.</p>
+                            <form action="#" method="POST" id="newsletter-form">
+                                <input type="email" name="email" placeholder="Seu melhor e-mail" class="w-full px-4 py-2 rounded-lg mb-3 text-gray-800" required>
+                                <button type="submit" class="w-full bg-[var(--vintage-pink)] text-white py-2 rounded-lg hover:bg-opacity-90 transition-colors">
+                                    Inscrever-se
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="py-16 bg-[var(--petrol-blue)] text-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold mb-4">Vamos Trabalhar Juntos?</h2>
+                    <p class="text-lg mb-8 opacity-90">Transforme sua presença digital e alcance resultados reais com estratégias personalizadas para o seu negócio.</p>
+                    <a href="contato.html" class="inline-block bg-[var(--vintage-pink)] text-white px-8 py-3 rounded-lg font-medium hover:bg-opacity-90 transition-colors">
+                        Entre em Contato
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Conteúdo do Post Individual -->
+    <div id="post-content" class="hidden">
+        <div class="py-16 bg-[var(--petrol-blue)] text-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <a href="#" class="text-white flex items-center mb-6" onclick="showBlogList(); return false;">
+                        <i class="fas fa-arrow-left mr-2"></i> Voltar para o blog
+                    </a>
+                    <span id="post-category" class="blog-category inline-block mb-3">Categoria</span>
+                    <h1 id="post-title" class="text-3xl md:text-4xl font-bold mb-4">Título do Post</h1>
+                    <div class="flex items-center">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-[var(--vintage-pink)] flex items-center justify-center text-white font-bold">BB</div>
+                            <span class="ml-2">Bruna Borba</span>
+                        </div>
+                        <span class="mx-3">|</span>
+                        <span id="post-date">Data</span>
+                        <span class="mx-3">|</span>
+                        <span><i class="far fa-clock mr-1"></i> 8 min de leitura</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="py-12 bg-pattern">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                    <div id="post-image" class="w-full h-80 rounded-lg mb-8 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)]"></div>
+                    
+                    <div id="post-body" class="post-content text-gray-700">
+                        <!-- O conteúdo do post será inserido aqui via JavaScript -->
+                    </div>
+                    
+                    <div class="mt-12 pt-8 border-t border-gray-200">
+                        <h3 class="text-xl font-bold mb-4 text-[var(--petrol-blue)]">Compartilhe este artigo</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#3b5998] flex items-center justify-center text-white">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#1da1f2] flex items-center justify-center text-white">
+                                <i class="fab fa<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'941325e2e0c088fb',t:'MTc0NzQ4NTI1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
