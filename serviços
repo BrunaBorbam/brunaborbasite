@@ -1,0 +1,1272 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - Bruna Borba Marketing Studio Tech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --petrol-blue: #1A535C;
+            --military-green: #4A5240;
+            --vintage-pink: #D8A7B1;
+            --light-pink: #F4D8E0;
+            --beige: #F7EDE2;
+            --gold: #D4AF37;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: var(--beige);
+        }
+        
+        .btn-primary {
+            background-color: var(--vintage-pink);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c6919b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--petrol-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #164950;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            background-color: var(--white);
+            padding: 2rem;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-pink);
+            color: var(--petrol-blue);
+            border-radius: 50%;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            background-color: var(--vintage-pink);
+            color: var(--white);
+        }
+        
+        .decorative-corner {
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--gold);
+            opacity: 0.7;
+        }
+        
+        .top-left {
+            top: 10px;
+            left: 10px;
+        }
+        
+        .top-right {
+            top: 10px;
+            right: 10px;
+        }
+        
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+        }
+        
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-pink);
+            color: var(--petrol-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-right: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--petrol-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--vintage-pink);
+            transform: translateY(-3px);
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-icon {
+            background-color: rgba(216, 167, 177, 0.2);
+            color: var(--vintage-pink);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-header {
+            background-color: var(--petrol-blue);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .pricing-features {
+            padding: 2rem;
+        }
+        
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-feature i {
+            color: var(--vintage-pink);
+            margin-right: 0.75rem;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        
+        .faq-question {
+            padding: 1rem 0;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding-bottom: 1rem;
+            display: none;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        .brain-icon {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .brain-icon::before {
+            content: '🧠';
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--vintage-pink), var(--petrol-blue));
+            -webkit-background-clip: text;
+            color: transparent;
+            display: block;
+        }
+        
+        .brain-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--vintage-pink), var(--petrol-blue));
+            bottom: -5px;
+            left: 0;
+            border-radius: 3px;
+        }
+        
+        .neuro-card {
+            border-left: 4px solid var(--vintage-pink);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .strategy-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .strategy-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(26, 83, 92, 0.1);
+            color: var(--petrol-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .process-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--vintage-pink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .process-content {
+            position: relative;
+        }
+        
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 25px;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background-color: #e2e8f0;
+            z-index: 1;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--petrol-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--vintage-pink);
+            transform: rotate(90deg);
+        }
+        
+        .modal-header {
+            border-bottom: 2px solid var(--light-pink);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-[var(--petrol-blue)]">Bruna Borba</a>
+                
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Home</a>
+                    <a href="sobre.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Quem Sou Eu</a>
+                    <a href="servicos.html" class="text-[var(--vintage-pink)] font-medium">Serviços</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Portfólio</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Blog</a>
+                    <a href="contato.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Contato</a>
+                </nav>
+                
+                <button class="md:hidden text-gray-700 focus:outline-none" id="menu-toggle">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4 mt-4 pb-4">
+                    <a href="index.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Home</a>
+                    <a href="sobre.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Quem Sou Eu</a>
+                    <a href="servicos.html" class="text-[var(--vintage-pink)] font-medium">Serviços</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Portfólio</a>
+                    <a href="blog.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Blog</a>
+                    <a href="contato.html" class="text-gray-700 hover:text-[var(--vintage-pink)] transition-colors">Contato</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-[var(--petrol-blue)] to-[#2a7d8a] text-white py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Serviços de Marketing Digital Estratégico</h1>
+                <p class="text-xl mb-8">Impulsione seu negócio com estratégias de marketing digital baseadas em neuromarketing e dados para resultados reais e mensuráveis.</p>
+                <a href="#contato" class="btn-primary mr-4">Fale Comigo</a>
+                <a href="#servicos" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-[var(--petrol-blue)] transition-all font-semibold">Ver Serviços</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section id="servicos" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-[var(--vintage-pink)] font-semibold">SERVIÇOS ESPECIALIZADOS</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-[var(--petrol-blue)]">Soluções Completas para seu Marketing Digital</h2>
+                <p class="text-gray-600">Ofereço serviços personalizados que combinam estratégias de marketing digital para maximizar seus resultados e ROI.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tráfego Pago & Performance -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Tráfego Pago & Performance</h3>
+                    <p class="text-gray-700 mb-4">
+                        <span class="block mb-2">• Gestão de Tráfego Pago (Google Ads & Meta Ads)</span>
+                        <span class="block">• Otimização de Conversão (CRO)</span>
+                    </p>
+                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('trafego-modal')">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Presença Online & Visibilidade -->
+                <div class="service-card reveal" style="animation-delay: 0.2s;">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Presença Online & Visibilidade</h3>
+                    <p class="text-gray-700 mb-4">
+                        <span class="block mb-2">• Criação de Sites Profissionais e Landing Pages</span>
+                        <span class="block mb-2">• Otimização SEO (On-Page, Técnico, Conteúdo)</span>
+                        <span class="block">• Gestão de Google Meu Negócio</span>
+                    </p>
+                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('presenca-modal')">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Estratégia & Capacitação -->
+                <div class="service-card reveal" style="animation-delay: 0.4s;">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Estratégia & Capacitação</h3>
+                    <p class="text-gray-700 mb-4">
+                        <span class="block mb-2">• Consultoria de Marketing Digital Estratégico</span>
+                        <span class="block">• Mentoria em Marketing Digital e Tráfego Pago</span>
+                    </p>
+                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('estrategia-modal')">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Automação & Eficiência -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Automação & Eficiência</h3>
+                    <p class="text-gray-700 mb-4">
+                        <span class="block mb-2">• Automação de Marketing e Relatórios</span>
+                        <span class="block">• Google Apps Script e Planilhas</span>
+                    </p>
+                    <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('automacao-modal')">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentoria e Tráfego Pago Section -->
+    <section class="py-20 bg-[var(--beige)]">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-[var(--vintage-pink)] font-semibold">SERVIÇOS ESPECIALIZADOS</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-[var(--petrol-blue)]">Mentoria em Marketing Digital e Tráfego Pago</h2>
+                <p class="text-gray-600">Descubra como nossas estratégias de mentoria e tráfego pago podem transformar seu negócio com técnicas avançadas de neuromarketing.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-[var(--petrol-blue)]">Mentoria em Marketing Digital</h3>
+                    <p class="text-gray-600 mb-8">Receba orientação personalizada para implementar estratégias eficientes de marketing digital no seu negócio, com foco em resultados mensuráveis.</p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="process-step">
+                            <div class="process-number">1</div>
+                            <div class="process-content">
+                                <h4 class="text-xl font-bold mb-2 text-[var(--petrol-blue)]">Diagnóstico Inicial</h4>
+                                <p class="text-gray-600">Análise completa do seu negócio, objetivos e desafios atuais para criar um plano personalizado.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-number">2</div>
+                            <div class="process-content">
+                                <h4 class="text-xl font-bold mb-2 text-[var(--petrol-blue)]">Planejamento Estratégico</h4>
+                                <p class="text-gray-600">Desenvolvimento de estratégias específicas para seus objetivos, com foco em resultados mensuráveis.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-number">3</div>
+                            <div class="process-content">
+                                <h4 class="text-xl font-bold mb-2 text-[var(--petrol-blue)]">Implementação Guiada</h4>
+                                <p class="text-gray-600">Acompanhamento passo a passo na implementação das estratégias, com suporte contínuo.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-number">4</div>
+                            <div class="process-content">
+                                <h4 class="text-xl font-bold mb-2 text-[var(--petrol-blue)]">Análise e Otimização</h4>
+                                <p class="text-gray-600">Monitoramento constante dos resultados e ajustes estratégicos para maximizar o desempenho.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-[var(--petrol-blue)]">Estratégias de Tráfego Pago</h3>
+                    <p class="text-gray-600 mb-6">Campanhas de anúncios otimizadas com técnicas de neuromarketing para maximizar seu ROI e atrair clientes qualificados.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 text-[var(--petrol-blue)]">Google Ads</h4>
+                                <p class="text-gray-600">Campanhas de Search, Display e YouTube otimizadas para captar clientes no momento exato da busca.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 text-[var(--petrol-blue)]">Facebook & Instagram Ads</h4>
+                                <p class="text-gray-600">Anúncios visualmente impactantes com segmentação precisa de público-alvo.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 text-[var(--petrol-blue)]">Neuromarketing Aplicado</h4>
+                                <p class="text-gray-600">Uso de gatilhos mentais e técnicas persuasivas para aumentar taxas de conversão.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 text-[var(--petrol-blue)]">Análise de Dados</h4>
+                                <p class="text-gray-600">Monitoramento constante e otimização baseada em métricas para maximizar resultados.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <a href="#contato" class="btn-primary">Solicitar Proposta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neuromarketing Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="brain-icon"></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[var(--petrol-blue)]">Estratégias de Neuromarketing</h2>
+                <p class="text-gray-600">Aplicamos princípios da neurociência para criar campanhas que se conectam emocionalmente com seu público e impulsionam resultados.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="neuro-card">
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Gatilhos Mentais</h3>
+                        <p class="text-gray-600">Utilizamos gatilhos mentais estrategicamente posicionados para influenciar decisões de compra e aumentar suas conversões.</p>
+                    </div>
+                    
+                    <div class="neuro-card">
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Copywriting Persuasivo</h3>
+                        <p class="text-gray-600">Criamos textos que falam diretamente ao cérebro do seu cliente, despertando emoções e incentivando ações.</p>
+                    </div>
+                    
+                    <div class="neuro-card">
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Design Comportamental</h3>
+                        <p class="text-gray-600">Desenvolvemos designs baseados em padrões de comportamento para maximizar a experiência do usuário e as taxas de conversão.</p>
+                    </div>
+                    
+                    <div class="neuro-card">
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Análise de Comportamento</h3>
+                        <p class="text-gray-600">Analisamos o comportamento do seu público para criar estratégias que atendam às suas necessidades reais e inconscientes.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-[var(--beige)] p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-[var(--petrol-blue)]">Como o Neuromarketing Transforma Resultados</h3>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-center mb-2">
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-[var(--vintage-pink)] h-4 rounded-full" style="width: 85%"></div>
+                            </div>
+                            <span class="ml-4 font-semibold">85%</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Aumento médio na taxa de conversão</p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-center mb-2">
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-[var(--vintage-pink)] h-4 rounded-full" style="width: 70%"></div>
+                            </div>
+                            <span class="ml-4 font-semibold">70%</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Redução no custo de aquisição de clientes</p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-center mb-2">
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="bg-[var(--vintage-pink)] h-4 rounded-full" style="width: 90%"></div>
+                            </div>
+                            <span class="ml-4 font-semibold">90%</span>
+                        </div>
+                        <p class="text-sm text-gray-600">Melhoria na retenção de clientes</p>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <a href="#contato" class="btn-primary">Quero aplicar no meu negócio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-[var(--beige)]">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-[var(--vintage-pink)] font-semibold">PERGUNTAS FREQUENTES</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-[var(--petrol-blue)]">Dúvidas Comuns</h2>
+                <p class="text-gray-600">Encontre respostas para as perguntas mais frequentes sobre nossos serviços de marketing digital.</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quanto tempo leva para ver resultados com tráfego pago?</span>
+                        <i class="fas fa-plus text-[var(--vintage-pink)]"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">Os primeiros resultados podem ser observados já nos primeiros dias de campanha, mas resultados consistentes e otimizados geralmente começam a aparecer após 2-4 semanas de ajustes e otimizações contínuas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona a mentoria em marketing digital?</span>
+                        <i class="fas fa-plus text-[var(--vintage-pink)]"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">A mentoria é personalizada para cada cliente. Começamos com um diagnóstico completo do seu negócio, definimos objetivos claros, desenvolvemos um plano estratégico e realizamos sessões regulares para implementação, análise e ajustes das estratégias.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>O que é neuromarketing e como pode ajudar meu negócio?</span>
+                        <i class="fas fa-plus text-[var(--vintage-pink)]"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">Neuromarketing é a aplicação de princípios da neurociência ao marketing, permitindo criar estratégias que se conectam com o subconsciente do consumidor. Isso ajuda a aumentar a eficácia das suas campanhas, melhorar a experiência do cliente e aumentar as taxas de conversão.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Qual o investimento necessário para começar com tráfego pago?</span>
+                        <i class="fas fa-plus text-[var(--vintage-pink)]"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">O investimento varia conforme seus objetivos e mercado. Trabalhamos com orçamentos a partir de R$ 1.500 mensais para campanhas iniciais, mas o ideal é realizar uma análise personalizada para definir o investimento adequado ao seu negócio e metas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Vocês atendem qualquer segmento de negócio?</span>
+                        <i class="fas fa-plus text-[var(--vintage-pink)]"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-600">Sim, trabalhamos com diversos segmentos, desde pequenos negócios locais até empresas de médio e grande porte. Nossa metodologia é adaptada para cada tipo de negócio e suas necessidades específicas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-[var(--petrol-blue)] to-[#2a7d8a] text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Pronto para Transformar seu Marketing Digital?</h2>
+                <p class="text-xl mb-8">Entre em contato hoje mesmo para uma consulta gratuita e descubra como posso ajudar seu negócio a alcançar novos patamares.</p>
+                <a href="#contato" class="btn-primary text-lg px-8 py-4">Falar com Especialista</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-[var(--vintage-pink)] font-semibold">CONTATO</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6 text-[var(--petrol-blue)]">Vamos Conversar</h2>
+                <p class="text-gray-600">Entre em contato para discutirmos como posso ajudar seu negócio a crescer com estratégias de marketing digital eficientes.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[var(--petrol-blue)]">Email</h4>
+                            <p class="text-gray-700">bruna.m.borbaa@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[var(--petrol-blue)]">Telefone</h4>
+                            <p class="text-gray-700">(51) 99268-2717</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[var(--petrol-blue)]">Localização</h4>
+                            <p class="text-gray-700">Av. Paraguassu, 6813 - Centro</p>
+                            <p class="text-gray-700">Xangri-lá - RS, 95588-000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold mb-4 text-[var(--petrol-blue)]">Redes Sociais</h4>
+                        <div class="flex">
+                            <!-- Link para Instagram -->
+                            <a href="https://www.instagram.com/brunaborba.m/" target="_blank" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            
+                            <!-- Link para LinkedIn -->
+                            <a href="https://www.linkedin.com/in/bruna-borba-465084254/" target="_blank" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            
+                            <!-- Link para WhatsApp -->
+                            <a href="https://wa.me/. " target="_blank" class="social-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulário de Contato -->
+                <div class="reveal">
+                    <div class="bg-[var(--beige)] p-8 rounded-lg relative h-full">
+                        <div class="decorative-corner top-left">✿</div>
+                        <div class="decorative-corner top-right">✿</div>
+                        <div class="decorative-corner bottom-left">✿</div>
+                        <div class="decorative-corner bottom-right">✿</div>
+                        
+                        <h3 class="text-2xl font-bold mb-6 text-[var(--petrol-blue)]">Envie uma Mensagem</h3>
+                        
+                        <form action="https://formspree.io/f/mbloogep" method="POST">
+                            <div class="mb-6">
+                                <label for="name" class="block mb-2 font-medium text-gray-700">Nome</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--vintage-pink)]" placeholder="Seu nome completo" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="email" class="block mb-2 font-medium text-gray-700">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--vintage-pink)]" placeholder="Seu email" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block mb-2 font-medium text-gray-700">Assunto</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--vintage-pink)]" placeholder="Assunto da mensagem" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block mb-2 font-medium text-gray-700">Mensagem</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--vintage-pink)]" placeholder="Sua mensagem" required></textarea>
+                            </div>
+                            
+                            <!-- Campo oculto para personalizar o assunto do email -->
+                            <input type="hidden" name="_subject" value="Novo contato do site - Bruna Borba">
+                            
+                            <button type="submit" class="btn-primary w-full">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--petrol-blue)] text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Bruna Borba</h3>
+                    <p class="mb-4 text-gray-300">Marketing Studio Tech especializado em estratégias digitais inovadoras para impulsionar o seu negócio.</p>
+                    <div class="flex mt-4">
+                        <a href="https://www.instagram.com/brunaborba.m/" target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bruna-borba-465084254/" target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://wa.me/. " target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Links Rápidos</h3>
+                    <ul>
+                        <li class="mb-2"><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li class="mb-2"><a href="sobre.html" class="text-gray-300 hover:text-white transition-colors">Quem Sou Eu</a></li>
+                        <li class="mb-2"><a href="servicos.html" class="text-gray-300 hover:text-white transition-colors">Serviços</a></li>
+                        <li class="mb-2"><a href="portfolio.html" class="text-gray-300 hover:text-white transition-colors">Portfólio</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="contato.html" class="text-gray-300 hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p class="mb-4 text-gray-300">Inscreva-se para receber dicas e novidades sobre marketing digital.</p>
+                    <form action="https://formspree.io/f/mbloogep" method="POST">
+                        <div class="flex">
+                            <input type="email" name="email" placeholder="Seu email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800" required>
+                            <input type="hidden" name="_subject" value="Nova inscrição na Newsletter">
+                            <button type="submit" class="bg-[var(--vintage-pink)] px-4 py-2 rounded-r-lg hover:bg-opacity-90 transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2023 Bruna Borba Marketing Studio Tech. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modais de Serviços -->
+    <!-- Modal Tráfego Pago -->
+    <div id="trafego-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('trafego-modal')">&times;</span>
+            <div class="modal-header">
+                <h2 class="text-2xl font-bold text-[var(--petrol-blue)]">Tráfego Pago & Performance</h2>
+            </div>
+            <div class="py-4">
+                <p class="mb-6 text-gray-600">Atraia clientes qualificados e maximize seu retorno sobre investimento com nossas estratégias de tráfego pago otimizadas para conversão.</p>
+                
+                <h3 class="text-xl font-bold mb-4 text-[var(--petrol-blue)]">O que oferecemos:</h3>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Gestão de Google Ads</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Campanhas de Search otimizadas para captar clientes no momento da busca</li>
+                        <li>Campanhas de Display para aumentar reconhecimento de marca</li>
+                        <li>Campanhas de YouTube para engajamento audiovisual</li>
+                        <li>Remarketing estratégico para recuperar visitantes</li>
+                        <li>Otimização contínua baseada em dados</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Gestão de Meta Ads (Facebook e Instagram)</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Segmentação avançada de público-alvo</li>
+                        <li>Criação de anúncios visualmente impactantes</li>
+                        <li>Campanhas de conversão, tráfego e reconhecimento</li>
+                        <li>Estratégias de funil completo</li>
+                        <li>Análise de desempenho e otimização contínua</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Otimização de Conversão (CRO)</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Análise de comportamento do usuário</li>
+                        <li>Testes A/B para maximizar conversões</li>
+                        <li>Otimização de landing pages</li>
+                        <li>Implementação de gatilhos de neuromarketing</li>
+                        <li>Redução do custo por aquisição (CPA)</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-[var(--light-pink)] p-6 rounded-lg mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Benefícios:</h4>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                        <li>Aumento do retorno sobre investimento (ROI)</li>
+                        <li>Tráfego altamente qualificado</li>
+                        <li>Maior visibilidade da marca</li>
+                        <li>Resultados mensuráveis e escaláveis</li>
+                        <li>Estratégias baseadas em dados</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="#contato" class="btn-primary" onclick="closeModal('trafego-modal')">Solicitar Proposta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Presença Online -->
+    <div id="presenca-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('presenca-modal')">&times;</span>
+            <div class="modal-header">
+                <h2 class="text-2xl font-bold text-[var(--petrol-blue)]">Presença Online & Visibilidade</h2>
+            </div>
+            <div class="py-4">
+                <p class="mb-6 text-gray-600">Estabeleça uma presença digital profissional e aumente sua visibilidade online com soluções personalizadas para o seu negócio.</p>
+                
+                <h3 class="text-xl font-bold mb-4 text-[var(--petrol-blue)]">O que oferecemos:</h3>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Criação de Sites Profissionais</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Design moderno e responsivo</li>
+                        <li>Otimizado para conversão</li>
+                        <li>Experiência do usuário intuitiva</li>
+                        <li>Integração com ferramentas de marketing</li>
+                        <li>Carregamento rápido e performance otimizada</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Landing Pages de Alta Conversão</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Foco em um único objetivo de conversão</li>
+                        <li>Copywriting persuasivo</li>
+                        <li>Design baseado em princípios de neuromarketing</li>
+                        <li>Elementos de prova social</li>
+                        <li>Call-to-actions estratégicos</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Otimização SEO</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>SEO On-Page (meta tags, estrutura, conteúdo)</li>
+                        <li>SEO Técnico (velocidade, mobile-friendly, indexação)</li>
+                        <li>Estratégia de conteúdo otimizado</li>
+                        <li>Pesquisa de palavras-chave</li>
+                        <li>Análise de concorrentes</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Gestão de Google Meu Negócio</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Otimização completa do perfil</li>
+                        <li>Gerenciamento de avaliações</li>
+                        <li>Publicações regulares e estratégicas</li>
+                        <li>Monitoramento de insights e métricas</li>
+                        <li>Estratégias para melhorar o posicionamento local</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-[var(--light-pink)] p-6 rounded-lg mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Benefícios:</h4>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                        <li>Aumento da credibilidade e profissionalismo</li>
+                        <li>Melhor posicionamento nos resultados de busca</li>
+                        <li>Maior alcance de clientes potenciais</li>
+                        <li>Experiência do usuário aprimorada</li>
+                        <li>Aumento nas taxas de conversão</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="#contato" class="btn-primary" onclick="closeModal('presenca-modal')">Solicitar Proposta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Estratégia -->
+    <div id="estrategia-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('estrategia-modal')">&times;</span>
+            <div class="modal-header">
+                <h2 class="text-2xl font-bold text-[var(--petrol-blue)]">Estratégia & Capacitação</h2>
+            </div>
+            <div class="py-4">
+                <p class="mb-6 text-gray-600">Desenvolva competências internas e implemente estratégias eficientes de marketing digital com nossa consultoria especializada e programas de mentoria.</p>
+                
+                <h3 class="text-xl font-bold mb-4 text-[var(--petrol-blue)]">O que oferecemos:</h3>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Consultoria de Marketing Digital Estratégico</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Diagnóstico completo da presença digital</li>
+                        <li>Análise de concorrentes e mercado</li>
+                        <li>Definição de objetivos e KPIs</li>
+                        <li>Planejamento estratégico personalizado</li>
+                        <li>Recomendações baseadas em dados</li>
+                        <li>Roadmap de implementação</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Mentoria em Marketing Digital</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Sessões personalizadas de mentoria</li>
+                        <li>Capacitação da equipe interna</li>
+                        <li>Acompanhamento na implementação de estratégias</li>
+                        <li>Resolução de problemas específicos</li>
+                        <li>Atualização constante sobre tendências e melhores práticas</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Mentoria em Tráfego Pago</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Capacitação em Google Ads e Meta Ads</li>
+                        <li>Estratégias avançadas de segmentação</li>
+                        <li>Otimização de campanhas para máximo ROI</li>
+                        <li>Análise e interpretação de métricas</li>
+                        <li>Técnicas de teste e escalonamento</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-[var(--light-pink)] p-6 rounded-lg mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Benefícios:</h4>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                        <li>Desenvolvimento de competências internas</li>
+                        <li>Estratégias personalizadas para seu negócio</li>
+                        <li>Economia de tempo e recursos</li>
+                        <li>Aceleração de resultados</li>
+                        <li>Autonomia na gestão do marketing digital</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="#contato" class="btn-primary" onclick="closeModal('estrategia-modal')">Solicitar Proposta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Automação -->
+    <div id="automacao-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('automacao-modal')">&times;</span>
+            <div class="modal-header">
+                <h2 class="text-2xl font-bold text-[var(--petrol-blue)]">Automação & Eficiência</h2>
+            </div>
+            <div class="py-4">
+                <p class="mb-6 text-gray-600">Otimize processos, economize tempo e aumente a eficiência do seu marketing digital com nossas soluções de automação personalizadas.</p>
+                
+                <h3 class="text-xl font-bold mb-4 text-[var(--petrol-blue)]">O que oferecemos:</h3>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Automação de Marketing</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Fluxos de email marketing automatizados</li>
+                        <li>Nutrição de leads</li>
+                        <li>Segmentação automática de público</li>
+                        <li>Automação de redes sociais</li>
+                        <li>Chatbots e atendimento automatizado</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Automação de Relatórios</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Dashboards personalizados</li>
+                        <li>Relatórios automatizados</li>
+                        <li>Integração de múltiplas fontes de dados</li>
+                        <li>Visualização clara de KPIs</li>
+                        <li>Alertas e notificações automáticas</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Google Apps Script e Planilhas</h4>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Automação de tarefas repetitivas</li>
+                        <li>Integração entre ferramentas Google</li>
+                        <li>Planilhas inteligentes para gestão de marketing</li>
+                        <li>Coleta e processamento automático de dados</li>
+                        <li>Soluções personalizadas para necessidades específicas</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-[var(--light-pink)] p-6 rounded-lg mb-6">
+                    <h4 class="font-bold mb-2 text-[var(--petrol-blue)]">Benefícios:</h4>
+                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+                        <li>Economia significativa de tempo</li>
+                        <li>Redução de erros humanos</li>
+                        <li>Escalabilidade de processos</li>
+                        <li>Tomada de decisão baseada em dados</li>
+                        <li>Maior produtividade da equipe</li>
+                    </ul>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="#contato" class="btn-primary" onclick="closeModal('automacao-modal')">Solicitar Proposta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Reveal Animation on Scroll
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+        
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                answer.classList.toggle('active');
+                
+                if (answer.classList.contains('active')) {
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                } else {
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                }
+            });
+        });
+        
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9402fdb1a509f203',t:'MTc0NzMxNTgzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
