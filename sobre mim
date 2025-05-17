@@ -1,0 +1,699 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mim | Bruna Borba - Marketing Studio Tech</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        
+        :root {
+            --petrol-blue: #1A535C;
+            --sage-green: #4A5240;
+            --cream: #F7EDE2;
+            --vintage-pink: #D8A7B1;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        .btn-primary {
+            background-color: var(--petrol-blue);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #134046;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--vintage-pink);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c6919a;
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--vintage-pink);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231A535C' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--vintage-pink);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: var(--petrol-blue);
+        }
+        
+        .value-card {
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--vintage-pink);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: var(--petrol-blue);
+        }
+        
+        .nav-link.active {
+            color: var(--petrol-blue);
+            font-weight: 500;
+        }
+        
+        .feminine-border {
+            border: 2px solid var(--vintage-pink);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(216, 167, 177, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feminine-border:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(216, 167, 177, 0.2);
+        }
+        
+        /* Garantindo que o footer tenha o fundo correto */
+        footer.site-footer {
+            background-color: #1A535C !important;
+            color: white !important;
+        }
+        
+        /* Garantindo que os ícones de redes sociais sejam visíveis */
+        footer .social-icon {
+            color: white !important;
+            font-size: 1.5rem;
+        }
+        
+        /* Corrigindo o botão "Ver Mais Casos de Sucesso" */
+        .btn-primary, .btn-secondary {
+            color: white !important;
+            display: inline-block;
+        }
+        
+        /* Corrigindo a seção "Minha Missão" */
+        .mission-section {
+            background-color: var(--petrol-blue);
+        }
+        
+        .mission-section h3,
+        .mission-section p {
+            color: white !important;
+        }
+        
+        /* Corrigindo a seção "Vamos Trabalhar Juntos?" */
+        .cta-section {
+            background-color: var(--petrol-blue);
+        }
+        
+        .cta-section h2,
+        .cta-section p {
+            color: white !important;
+        }
+        
+        .cta-section .btn-outline {
+            border: 2px solid white;
+            color: white !important;
+        }
+        
+        .cta-section .btn-outline:hover {
+            background-color: white;
+            color: var(--petrol-blue) !important;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title::after {
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" class="flex items-center group">
+                    <!-- Elemento visual do logo (cÃ­rculo com iniciais) -->
+                    <div style="width: 48px; height: 48px; background-color: #D8A7B1 !important; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s;" class="group-hover:scale-110">
+                        <span style="color: white !important; font-weight: bold; font-size: 18px;">BB</span>
+                    </div>
+                    <!-- Texto do logo -->
+                    <div>
+                        <span style="font-size: 24px; font-weight: bold; color: #1A535C !important;">Bruna Borba</span>
+                        <span style="display: block; font-size: 14px; color: #4A4A4A !important;">Marketing Tech Studio</span>
+                    </div>
+                </a>
+            </div>
+            
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-[var(--petrol-blue)]">Home</a>
+                    <a href="sobre.html" class="nav-link active text-[var(--petrol-blue)] font-medium">Quem Sou Eu</a>
+                    <a href="servicos.html" class="nav-link text-gray-700 hover:text-[var(--petrol-blue)]">Serviços</a>
+                    <a href="portfolio.html" class="nav-link text-gray-700 hover:text-[var(--petrol-blue)]">Portfólio</a>
+                    <a href="blog.html" class="nav-link text-gray-700 hover:text-[var(--petrol-blue)]">Blog</a>
+                    <a href="contato.html" class="nav-link text-gray-700 hover:text-[var(--petrol-blue)]">Contato</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-[var(--petrol-blue)] focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-[var(--petrol-blue)]">Home</a>
+                <a href="sobre.html" class="block py-2 text-[var(--petrol-blue)] font-medium">Quem Sou Eu</a>
+                <a href="servicos.html" class="block py-2 text-gray-700 hover:text-[var(--petrol-blue)]">Serviços</a>
+                <a href="portfolio.html" class="block py-2 text-gray-700 hover:text-[var(--petrol-blue)]">Portfólio</a>
+                <a href="blog.html" class="block py-2 text-gray-700 hover:text-[var(--petrol-blue)]">Blog</a>
+                <a href="contato.html" class="block py-2 text-gray-700 hover:text-[var(--petrol-blue)]">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-[var(--cream)]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative">
+                        <!-- Foto profissional com borda estilizada -->
+                        <div class="w-full max-w-md mx-auto rounded-lg overflow-hidden border-4 border-[var(--vintage-pink)]">
+                            <!-- Simulando a foto real com placeholder -->
+                            <div class="about-img-container relative w-full h-96 md:h-[500px] overflow-hidden">
+                                <img src="bruna-foto.jpg" alt="Bruna Borba" class="about-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 p-6 rounded-lg shadow-lg" style="background-color: #1A535C; color: white;">
+                            <p class="color: white; font-weight: bold;">+2 anos de experiência</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-[var(--petrol-blue)] mb-6">Olá, eu sou <span class="text-[var(--vintage-pink)]">Bruna Borba</span></h1>
+                    <p class="text-lg text-gray-700 mb-6">Especialista em marketing digital com foco em resultados mensuráveis. Ajudo empresas a crescerem através de estratégias personalizadas de tráfego pago, SEO e gestão de mídias sociais.</p>
+                    <p class="text-lg text-gray-700 mb-8">Minha missão é transformar investimentos em marketing em resultados reais para o seu negócio, com transparência e compromisso com o sucesso dos meus clientes.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#historia" class="btn-primary">Minha História</a>
+                        <a href="contato.html" class="btn-secondary">Fale Comigo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minha História Section -->
+    <section id="historia" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="section-title text-3xl font-bold text-[var(--petrol-blue)] inline-block">Minha História</h2>
+                <p class="max-w-2xl mx-auto text-gray-700 mt-6">Conheça um pouco da minha trajetória profissional e como me tornei especialista em marketing digital.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-bold text-[var(--petrol-blue)]">2022 - Início da Jornada</h3>
+                        <p class="text-gray-700 mt-2">Comecei minha carreira em marketing digital como social media em uma agência local, onde aprendi os fundamentos de gestão de redes sociais e criação de conteúdo.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-bold text-[var(--petrol-blue)]">2023 - Especialização em Tráfego Pago</h3>
+                        <p class="text-gray-700 mt-2">Me especializei em Facebook Ads e Google Ads, desenvolvendo campanhas que geraram resultados expressivos para clientes de diversos segmentos.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-bold text-[var(--petrol-blue)]">2024 - Gestão de Projetos</h3>
+                        <p class="text-gray-700 mt-2">Assumi a gestão de projetos de marketing digital para clientes de médio e grande porte, coordenando equipes e desenvolvendo estratégias integradas.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-bold text-[var(--petrol-blue)]">2025 - Marketing Studio Tech</h3>
+                        <p class="text-gray-700 mt-2">Fundei a Marketing Studio Tech para oferecer soluções personalizadas de marketing digital com foco em resultados mensuráveis e ROI positivo.</p>
+                    </div>
+                </div>
+                
+                <div class="reveal" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold text-[var(--petrol-blue)] mb-6">Por que trabalhar comigo?</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold text-[var(--vintage-pink)]">Abordagem Orientada a Resultados</h4>
+                        <p class="text-gray-700 mt-2">Não me contento apenas com métricas de vaidade. Meu foco está em gerar resultados reais para o seu negócio, seja em vendas, leads ou reconhecimento de marca.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold text-[var(--vintage-pink)]">Estratégias Personalizadas</h4>
+                        <p class="text-gray-700 mt-2">Cada negócio é único. Por isso, desenvolvo estratégias personalizadas que se alinham aos seus objetivos, público-alvo e orçamento.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-xl font-semibold text-[var(--vintage-pink)]">Transparência e Comunicação</h4>
+                        <p class="text-gray-700 mt-2">Acredito na transparência total. Você terá acesso a relatórios detalhados e comunicação clara sobre o desempenho das suas campanhas.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold text-[var(--vintage-pink)]">Aprendizado Contínuo</h4>
+                        <p class="text-gray-700 mt-2">O marketing digital está sempre evoluindo. Mantenho-me atualizada com as últimas tendências e melhores práticas para garantir que suas estratégias estejam sempre à frente da concorrência.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores e Missão Section -->
+    <section class="py-20 bg-[var(--cream)]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="section-title text-3xl font-bold text-[var(--petrol-blue)] inline-block">Valores e Missão</h2>
+                <p class="max-w-2xl mx-auto text-gray-700 mt-6">Os princípios que guiam meu trabalho e a forma como entrego valor aos meus clientes.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="value-card bg-white p-8 rounded-lg shadow-md reveal">
+                    <div class="w-16 h-16 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--petrol-blue)] mb-4">Integridade</h3>
+                    <p class="text-gray-700">Compromisso com a verdade e transparência em todas as etapas do trabalho, desde o planejamento até a entrega dos resultados.</p>
+                </div>
+                
+                <div class="value-card bg-white p-8 rounded-lg shadow-md reveal" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--petrol-blue)] mb-4">Inovação</h3>
+                    <p class="text-gray-700">Busca constante por soluções criativas e inovadoras que se destacam no mercado e geram resultados diferenciados.</p>
+                </div>
+                
+                <div class="value-card bg-white p-8 rounded-lg shadow-md reveal" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--petrol-blue)] mb-4">Colaboração</h3>
+                    <p class="text-gray-700">Trabalho em parceria com meus clientes, entendendo suas necessidades e construindo estratégias de forma colaborativa.</p>
+                </div>
+                
+                <div class="value-card bg-white p-8 rounded-lg shadow-md reveal">
+                    <div class="w-16 h-16 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--petrol-blue)] mb-4">Resultados</h3>
+                    <p class="text-gray-700">Foco em gerar resultados mensuráveis e tangíveis que impactam positivamente o crescimento e a lucratividade do seu negócio.</p>
+                </div>
+                
+                <div class="value-card bg-white p-8 rounded-lg shadow-md reveal" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--petrol-blue)] mb-4">Adaptabilidade</h3>
+                    <p class="text-gray-700">Capacidade de se adaptar rapidamente às mudanças do mercado e às novas tecnologias, garantindo estratégias sempre atualizadas.</p>
+                </div>
+                
+                <div class="value-card bg-white p-8 rounded-lg shadow-md reveal" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--petrol-blue)] mb-4">Comprometimento</h3>
+                    <p class="text-gray-700">Dedicação total aos projetos e compromisso com prazos, qualidade e excelência em cada entrega.</p>
+                </div>
+            </div>
+            
+            <!-- Seção Minha Missão - CORRIGIDA -->
+            <div class="mt-16 bg-[var(--petrol-blue)] p-8 rounded-lg shadow-lg text-center reveal mission-section">
+                <h3 class="text-2xl font-bold text-white mb-4">Minha Missão</h3>
+                <p class="text-lg text-white mb-6">Transformar investimentos em marketing digital em crescimento real para negócios, através de estratégias personalizadas, dados e criatividade.</p>
+                <a href="contato.html" class="btn-secondary">Vamos Trabalhar Juntos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formação e Certificações Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="section-title text-3xl font-bold text-[var(--petrol-blue)] inline-block">Formação e Certificações</h2>
+                <p class="max-w-2xl mx-auto text-gray-700 mt-6">Investimento contínuo em conhecimento e aprimoramento profissional.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <h3 class="text-2xl font-bold text-[var(--petrol-blue)] mb-6">Formação Acadêmica</h3>
+                    
+                    <div class="mb-8 bg-[var(--cream)] p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold text-[var(--petrol-blue)]">Tecnólogo em Marketing Digital</h4>
+                        <p class="text-gray-700 mt-1">Faculdade Unirriter</p>
+                        <p class="text-gray-600 mt-1">2022 - 2024</p>
+                    </div>
+                    
+                    <div class="mb-8 bg-[var(--cream)] p-6 rounded-lg shadow-md">
+                        <h4 class="text-xl font-semibold text-[var(--petrol-blue)]">Pós-graduação em Neuromarketing</h4>
+                        <p class="text-gray-700 mt-1">Faculdade Metropolitana</p>
+                        <p class="text-gray-600 mt-1">2024 - 2025</p>
+                    </div>
+                </div>
+                
+                <div class="reveal" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold text-[var(--petrol-blue)] mb-6">Certificações</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-[var(--cream)] p-6 rounded-lg shadow-md">
+                            <div class="w-12 h-12 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-[var(--petrol-blue)]">Google Ads</h4>
+                            <p class="text-gray-700 mt-1">Certificação Profissional</p>
+                        </div>
+                        
+                        <div class="bg-[var(--cream)] p-6 rounded-lg shadow-md">
+                            <div class="w-12 h-12 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-[var(--petrol-blue)]">Facebook Blueprint</h4>
+                            <p class="text-gray-700 mt-1">Certificação Avançada</p>
+                        </div>
+                        
+                        <div class="bg-[var(--cream)] p-6 rounded-lg shadow-md">
+                            <div class="w-12 h-12 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-[var(--petrol-blue)]">Google Analytics</h4>
+                            <p class="text-gray-700 mt-1">Certificação Individual</p>
+                        </div>
+                        
+                        <div class="bg-[var(--cream)] p-6 rounded-lg shadow-md">
+                            <div class="w-12 h-12 bg-[var(--petrol-blue)] rounded-full flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-[var(--petrol-blue)]">HubSpot</h4>
+                            <p class="text-gray-700 mt-1">Inbound Marketing</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <p class="text-gray-700 mb-4">Além destas, participo regularmente de cursos e workshops para me manter atualizada com as últimas tendências e ferramentas do marketing digital.</p>
+                        <a href="#" class="text-[var(--petrol-blue)] font-medium hover:underline">Ver todas as certificações →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Section -->
+    <section class="py-20 bg-[var(--cream)]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="section-title text-3xl font-bold text-[var(--petrol-blue)] inline-block">O Que Dizem Sobre Mim</h2>
+                <p class="max-w-2xl mx-auto text-gray-700 mt-6">Depoimentos de clientes que confiaram em meu trabalho e obtiveram resultados.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-md reveal">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-[var(--vintage-pink)] rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">VP</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[var(--petrol-blue)]">Vigano Pizzaria</h4>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"A Bruna transformou completamente nossa presença digital. As campanhas de Facebook Ads que ela desenvolveu aumentaram nossas vendas em 45% em apenas três meses. Recomendo sem hesitar!"</p>
+                    <div class="flex text-[var(--vintage-pink)]">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-md reveal" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-[var(--vintage-pink)] rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">IE</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-[var(--petrol-blue)]">Instituto de Educação Ana</h4>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">"A estratégia de marketing desenvolvida pela Bruna foi fundamental para aumentarmos o número de matrículas em nossa escola. Sua abordagem profissional e dedicação ao projeto fizeram toda a diferença."</p>
+                    <div class="flex text-[var(--vintage-pink)]">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botão "Ver Mais Casos de Sucesso" - CORRIGIDO -->
+            <div class="mt-12 text-center reveal">
+                <a href="portfolio.html" class="btn-primary inline-block text-white">Ver Mais Casos de Sucesso</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - "Vamos Trabalhar Juntos?" - CORRIGIDA -->
+    <section class="py-20 bg-[var(--petrol-blue)] cta-section">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Vamos Trabalhar Juntos?</h2>
+                <p class="text-lg text-white mb-8">Estou pronta para ajudar seu negócio a alcançar novos patamares através de estratégias de marketing digital eficientes e personalizadas.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="contato.html" class="btn-secondary">Agendar uma Consulta</a>
+                    <!-- Botão "Conhecer Serviços" -->
+                    <a href="servicos.html" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-[var(--petrol-blue)] transition-all btn-outline">Conhecer Serviços</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Corrigido para garantir que tenha o fundo correto e texto visível -->
+    <footer class="site-footer bg-[#1A535C] text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Bruna Borba</h3>
+                    <p class="mb-4 text-gray-300">Marketing Studio Tech especializado em estratégias digitais inovadoras para impulsionar o seu negócio.</p>
+                    <div class="flex mt-4">
+                        <a href="https://www.instagram.com/brunaborba.m/" target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bruna-borba-465084254/" target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://wa.me/. " target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors social-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Links Rápidos</h3>
+                    <ul>
+                        <li class="mb-2"><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+    <li class="mb-2"><a href="sobre.html" class="text-gray-300 hover:text-white transition-colors">Quem Sou Eu</a></li>
+    <li class="mb-2"><a href="servicos.html" class="text-gray-300 hover:text-white transition-colors">Serviços</a></li>
+    <li class="mb-2"><a href="portfolio.html" class="text-gray-300 hover:text-white transition-colors">Portfólio</a></li>
+    <li class="mb-2"><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+    <li><a href="contato.html" class="text-gray-300 hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Newsletter</h3>
+                    <p class="mb-4 text-gray-300">Inscreva-se para receber dicas e novidades sobre marketing digital.</p>
+                    <form action="https://formspree.io/f/mbloogep" method="POST">
+                        <div class="flex">
+                            <input type="email" name="email" placeholder="Seu email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800" required>
+                            <input type="hidden" name="_subject" value="Nova inscrição na Newsletter">
+                            <button type="submit" class="bg-[var(--vintage-pink)] px-4 py-2 rounded-r-lg hover:bg-opacity-90 transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2023 Bruna Borba Marketing Studio Tech. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93f2616504fdf1da',t:'MTc0NzE0MTY2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
