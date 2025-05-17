@@ -1,0 +1,716 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruna Borba | Portfólio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --petrol-blue: #1A535C;
+            --military-green: #4A5240;
+            --vintage-pink: #D8A7B1;
+            --light-pink: #F4D8E0;
+            --beige: #F7EDE2;
+            --gold: #D4AF37;
+            --white: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background-color: var(--beige);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .portfolio-grid-bg {
+            background-color: white;
+        }
+        
+        .portfolio-card {
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 83, 92, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231A535C' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: modalFadeIn 0.4s;
+        }
+        
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--vintage-pink);
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body {
+            margin-bottom: 20px;
+        }
+        
+        .modal-footer {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            text-align: right;
+        }
+        
+        /* Filtro de portfólio */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--petrol-blue);
+            color: var(--petrol-blue);
+            padding: 8px 20px;
+            margin: 0 5px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--petrol-blue);
+            color: white;
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-[var(--petrol-blue)]">Bruna Borba</a>
+                
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="index.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Home</a></li>
+                        <li><a href="sobre.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Quem Sou Eu</a></li>
+                        <li><a href="servicos.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Serviços</a></li>
+                        <li><a href="portfolio.html" class="text-[var(--vintage-pink)] font-medium">Portfólio</a></li>
+                        <li><a href="blog.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Blog</a></li>
+                        <li><a href="contato.html" class="text-gray-700 hover:text-[var(--vintage-pink)] font-medium">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="md:hidden">
+                    <button class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Portfolio Grid -->
+    <section class="py-16 portfolio-grid-bg relative">
+        <!-- Elementos decorativos -->
+        <div class="absolute top-0 left-0 w-full h-full bg-pattern opacity-50"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal active">
+                <h2 class="text-3xl md:text-4xl font-bold text-[var(--petrol-blue)] mb-4">Meu Portfólio</h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">Conheça alguns dos projetos que desenvolvi e os resultados alcançados para meus clientes.</p>
+            </div>
+            
+            <div class="portfolio-filter reveal active mb-12">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="estrategia">Estratégia</button>
+                <button class="filter-btn" data-filter="trafego">Tráfego Pago</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- ANA Instituto de Educação -->
+                <div class="portfolio-card reveal active overflow-hidden rounded-lg shadow-lg bg-white" data-category="estrategia trafego">
+                    <div class="relative overflow-hidden h-64">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                            <h3 class="text-white text-2xl font-bold px-4 text-center">ANA Instituto de Educação</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" onclick="openModal('ana-modal')" class="bg-white text-[var(--petrol-blue)] px-6 py-2 rounded-full font-medium hover:bg-[var(--vintage-pink)] hover:text-white transition duration-300">Ver Detalhes</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Estratégia Digital</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Tráfego Pago</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mb-2">Capacitação</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">ANA Instituto de Educação</h3>
+                        <p class="text-gray-700 mb-4">Desenvolvimento de estratégias de marketing digital integradas para aumentar a visibilidade e captação de alunos, incluindo campanhas de tráfego pago otimizadas e treinamentos especializados.</p>
+                        <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('ana-modal')">
+                            Ver detalhes <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Vigano Pizzaria -->
+                <div class="portfolio-card reveal active overflow-hidden rounded-lg shadow-lg bg-white" data-category="trafego" style="animation-delay: 0.2s;">
+                    <div class="relative overflow-hidden h-64">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                            <h3 class="text-white text-2xl font-bold px-4 text-center">Vigano Pizzaria</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" onclick="openModal('vigano-modal')" class="bg-white text-[var(--petrol-blue)] px-6 py-2 rounded-full font-medium hover:bg-[var(--vintage-pink)] hover:text-white transition duration-300">Ver Detalhes</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Tráfego Pago</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Criativos</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mb-2">Estratégia</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Vigano Pizzaria</h3>
+                        <p class="text-gray-700 mb-4">Desenvolvimento de campanhas de tráfego pago e estratégias de marketing digital para aumentar a visibilidade da marca e atrair novos clientes, com foco em resultados mensuráveis.</p>
+                        <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('vigano-modal')">
+                            Ver detalhes <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Site Pessoal -->
+                <div class="portfolio-card reveal active overflow-hidden rounded-lg shadow-lg bg-white" data-category="web estrategia" style="animation-delay: 0.4s;">
+                    <div class="relative overflow-hidden h-64">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                            <h3 class="text-white text-2xl font-bold px-4 text-center">Site Profissional</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" onclick="openModal('site-modal')" class="bg-white text-[var(--petrol-blue)] px-6 py-2 rounded-full font-medium hover:bg-[var(--vintage-pink)] hover:text-white transition duration-300">Ver Detalhes</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Web Design</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">SEO</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mb-2">UX/UI</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Site Profissional</h3>
+                        <p class="text-gray-700 mb-4">Desenvolvimento de site profissional com foco em conversão, experiência do usuário e otimização para mecanismos de busca, refletindo minha expertise em marketing digital.</p>
+                        <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('site-modal')">
+                            Ver detalhes <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Projeto Consultoria -->
+                <div class="portfolio-card reveal active overflow-hidden rounded-lg shadow-lg bg-white" data-category="estrategia" style="animation-delay: 0.4s;">
+                    <div class="relative overflow-hidden h-64">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                            <h3 class="text-white text-2xl font-bold px-4 text-center">Consultoria Estratégica</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" onclick="openModal('consultoria-modal')" class="bg-white text-[var(--petrol-blue)] px-6 py-2 rounded-full font-medium hover:bg-[var(--vintage-pink)] hover:text-white transition duration-300">Ver Detalhes</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Consultoria</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Estratégia</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mb-2">Mentoria</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Consultoria Estratégica</h3>
+                        <p class="text-gray-700 mb-4">Consultoria estratégica para empresa de serviços B2B, desenvolvendo um plano completo de marketing digital para geração de leads qualificados.</p>
+                        <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('consultoria-modal')">
+                            Ver detalhes <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Projeto Automação -->
+                <div class="portfolio-card reveal active overflow-hidden rounded-lg shadow-lg bg-white" data-category="estrategia" style="animation-delay: 0.6s;">
+                    <div class="relative overflow-hidden h-64">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[var(--petrol-blue)] to-[var(--vintage-pink)] opacity-90 flex items-center justify-center">
+                            <h3 class="text-white text-2xl font-bold px-4 text-center">Automação de Marketing</h3>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <a href="#" onclick="openModal('automacao-modal')" class="bg-white text-[var(--petrol-blue)] px-6 py-2 rounded-full font-medium hover:bg-[var(--vintage-pink)] hover:text-white transition duration-300">Ver Detalhes</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Automação</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mr-2 mb-2">Eficiência</span>
+                            <span class="inline-block bg-[var(--light-pink)] text-[var(--petrol-blue)] text-sm font-medium px-3 py-1 rounded-full mb-2">Relatórios</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[var(--petrol-blue)]">Automação de Marketing</h3>
+                        <p class="text-gray-700 mb-4">Implementação de sistema de automação de marketing e relatórios para empresa de tecnologia, aumentando a eficiência e reduzindo custos operacionais.</p>
+                        <a href="#" class="text-[var(--vintage-pink)] font-medium hover:underline flex items-center" onclick="openModal('automacao-modal')">
+                            Ver detalhes <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-[var(--petrol-blue)] text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Bruna Borba</h3>
+                    <p class="mb-4 text-gray-300">Marketing Studio Tech especializado em estratégias digitais inovadoras para impulsionar o seu negócio.</p>
+                    <div class="flex mt-4">
+                        <a href="https://www.instagram.com/brunaborba.m/" target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bruna-borba-465084254/" target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://wa.me/. " target="_blank" class="mr-4 text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Links Rápidos</h3>
+                    <ul>
+                        <li class="mb-2"><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li class="mb-2"><a href="sobre.html" class="text-gray-300 hover:text-white transition-colors">Quem Sou Eu</a></li>
+                        <li class="mb-2"><a href="servicos.html" class="text-gray-300 hover:text-white transition-colors">Serviços</a></li>
+                        <li class="mb-2"><a href="portfolio.html" class="text-gray-300 hover:text-white transition-colors">Portfólio</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="contato.html" class="text-gray-300 hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                    <p class="mb-4 text-gray-300">Inscreva-se para receber dicas e novidades sobre marketing digital.</p>
+                    <form action="https://formspree.io/f/mbloogep" method="POST">
+                        <div class="flex">
+                            <input type="email" name="email" placeholder="Seu email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800" required>
+                            <input type="hidden" name="_subject" value="Nova inscrição na Newsletter">
+                            <button type="submit" class="bg-[var(--vintage-pink)] px-4 py-2 rounded-r-lg hover:bg-opacity-90 transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2023 Bruna Borba Marketing Studio Tech. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modals -->
+    <!-- ANA Instituto Modal -->
+    <div id="ana-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('ana-modal')">&times;</span>
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-[var(--petrol-blue)]">ANA Instituto de Educação</h3>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-700 mb-4">O ANA Instituto de Educação buscava aumentar sua visibilidade online e atrair mais alunos para seus cursos de pós-graduação. Desenvolvi uma estratégia completa de marketing digital que incluiu:</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Desafios</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Alto custo de aquisição de alunos</li>
+                            <li class="mb-2">• Baixa visibilidade online</li>
+                            <li>• Concorrência acirrada no setor</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Soluções</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Campanhas segmentadas de Google Ads</li>
+                            <li class="mb-2">• Estratégia de conteúdo para SEO</li>
+                            <li>• Treinamento da equipe interna</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Resultados</h4>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">70%</h5>
+                        <p class="text-gray-700">Aumento de leads qualificados</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">40%</h5>
+                        <p class="text-gray-700">Redução no custo por lead</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">85%</h5>
+                        <p class="text-gray-700">Aumento nas matrículas</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700">A implementação da estratégia resultou em um aumento significativo na visibilidade da instituição, com crescimento orgânico nas redes sociais e posicionamento para palavras-chave relevantes nos mecanismos de busca.</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('ana-modal')" class="bg-[var(--vintage-pink)] text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition duration-300">Fechar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Vigano Pizzaria Modal -->
+    <div id="vigano-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('vigano-modal')">&times;</span>
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-[var(--petrol-blue)]">Vigano Pizzaria</h3>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-700 mb-4">A Vigano Pizzaria, um restaurante tradicional, buscava aumentar sua presença digital e atrair novos clientes. Desenvolvi uma estratégia focada em tráfego pago e presença local:</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Desafios</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Concorrência local intensa</li>
+                            <li class="mb-2">• Baixa presença digital</li>
+                            <li>• Orçamento limitado para marketing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Soluções</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Campanhas locais no Google Ads</li>
+                            <li class="mb-2">• Otimização do Google Meu Negócio</li>
+                            <li>• Estratégia de conteúdo para redes sociais</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Resultados</h4>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">50%</h5>
+                        <p class="text-gray-700">Aumento no fluxo de clientes</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">25%</h5>
+                        <p class="text-gray-700">Aumento no ticket médio</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">300%</h5>
+                        <p class="text-gray-700">Aumento em pedidos online</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700">As campanhas de marketing digital implementadas permitiram que a pizzaria aumentasse significativamente sua visibilidade local e atraísse novos clientes, resultando em um crescimento sustentável do negócio.</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('vigano-modal')" class="bg-[var(--vintage-pink)] text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition duration-300">Fechar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Site Pessoal Modal -->
+    <div id="site-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('site-modal')">&times;</span>
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-[var(--petrol-blue)]">Site Profissional</h3>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-700 mb-4">Desenvolvimento do meu site profissional com foco em conversão e experiência do usuário, aplicando as melhores práticas de UX/UI e SEO:</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Objetivos</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Apresentar portfólio e serviços</li>
+                            <li class="mb-2">• Gerar leads qualificados</li>
+                            <li>• Estabelecer autoridade no mercado</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Implementações</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Design responsivo e moderno</li>
+                            <li class="mb-2">• Otimização para SEO</li>
+                            <li>• Elementos de conversão estratégicos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Resultados</h4>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">95%</h5>
+                        <p class="text-gray-700">Pontuação PageSpeed</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">60%</h5>
+                        <p class="text-gray-700">Taxa de conversão</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">Top 5</h5>
+                        <p class="text-gray-700">Posições no Google</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700">O site se tornou uma ferramenta essencial para a captação de novos clientes e estabelecimento da minha marca pessoal no mercado de marketing digital.</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('site-modal')" class="bg-[var(--vintage-pink)] text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition duration-300">Fechar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Consultoria Modal -->
+    <div id="consultoria-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('consultoria-modal')">&times;</span>
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-[var(--petrol-blue)]">Consultoria Estratégica</h3>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-700 mb-4">Consultoria estratégica para empresa de serviços B2B que buscava aumentar sua geração de leads qualificados e melhorar seu posicionamento no mercado:</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Desafios</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Baixa geração de leads qualificados</li>
+                            <li class="mb-2">• Ciclo de vendas longo</li>
+                            <li>• Falta de estratégia digital clara</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Soluções</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Desenvolvimento de plano estratégico</li>
+                            <li class="mb-2">• Implementação de marketing de conteúdo</li>
+                            <li>• Automação de marketing e nutrição de leads</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Resultados</h4>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">120%</h5>
+                        <p class="text-gray-700">Aumento na geração de leads</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">30%</h5>
+                        <p class="text-gray-700">Redução no ciclo de vendas</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">85%</h5>
+                        <p class="text-gray-700">Aumento na taxa de conversão</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700">A consultoria resultou em uma transformação completa da presença digital da empresa, estabelecendo-a como referência em seu segmento e aumentando significativamente seu volume de negócios.</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('consultoria-modal')" class="bg-[var(--vintage-pink)] text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition duration-300">Fechar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Automação Modal -->
+    <div id="automacao-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('automacao-modal')">&times;</span>
+            <div class="modal-header">
+                <h3 class="text-2xl font-bold text-[var(--petrol-blue)]">Automação de Marketing</h3>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-700 mb-4">Implementação de sistema de automação de marketing e relatórios para empresa de tecnologia, visando aumentar a eficiência e reduzir custos operacionais:</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Desafios</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Processos manuais ineficientes</li>
+                            <li class="mb-2">• Falta de dados para tomada de decisão</li>
+                            <li>• Alto custo operacional</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Soluções</h4>
+                        <ul class="text-gray-700">
+                            <li class="mb-2">• Implementação de CRM integrado</li>
+                            <li class="mb-2">• Automação de fluxos de nutrição</li>
+                            <li>• Dashboards de análise em tempo real</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h4 class="font-bold text-[var(--petrol-blue)] mb-2">Resultados</h4>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">65%</h5>
+                        <p class="text-gray-700">Redução em tempo operacional</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">40%</h5>
+                        <p class="text-gray-700">Redução em custos</p>
+                    </div>
+                    <div class="bg-[var(--light-pink)] p-4 rounded-lg text-center">
+                        <h5 class="text-2xl font-bold text-[var(--petrol-blue)]">90%</h5>
+                        <p class="text-gray-700">Aumento na satisfação da equipe</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700">A automação permitiu que a empresa escalasse suas operações de marketing sem aumentar sua equipe, além de proporcionar insights valiosos para a tomada de decisões estratégicas.</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal('automacao-modal')" class="bg-[var(--vintage-pink)] text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition duration-300">Fechar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Filtro de portfólio
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            if (item.getAttribute('data-category').includes(filterValue)) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Modal functions
+            window.openModal = function(modalId) {
+                document.getElementById(modalId).style.display = 'block';
+            }
+            
+            window.closeModal = function(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
+            
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9402cabfd08bd833',t:'MTc0NzMxMzc1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
